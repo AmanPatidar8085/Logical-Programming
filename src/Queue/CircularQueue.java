@@ -2,16 +2,20 @@ package Queue;
 
 import java.util.Scanner;
 
-public class QueueImpUsingArray {
-	static int queue[];
-	static int front;
-	static int rear;
+public class CircularQueue {
+static int queue[];
+static int front;
+static int rear;
+static int count;
+static int length;
+
 public static void main(String[] args) {
-	Scanner sc=new Scanner(System.in);
-	System.out.println("enter your size of the queue");
+	Scanner sc=new  Scanner(System.in);
+	System.out.println("enter the size of the queue");
 	int size=sc.nextInt();
 	queue=new int[size];
 	front=rear=-1;
+	length=size;
 	
 	while(true) {
 		System.out.println("check below the option");
@@ -50,71 +54,80 @@ public static void main(String[] args) {
 				System.out.println("invalid option....");
 		}
 	}
-	
 }
+
 private static void size() {
-	System.out.println("size of queue is : "+(rear-front+1));
+	System.out.println("queue size is "+ count);
 	
 }
+
 private static void display() {
-	if(rear==-1&&front==-1) {
-		System.out.println("queue is empty..");
-		return;
-	}
-	for(int i=front;i<=rear;i++) {
+	int i=front;
+	while(i!=rear) {
 		System.out.println(queue[i]+" ");
+		i=(i+1)%length;
 	}
+	System.out.println(queue[i]);
+	
 }
+
 private static void isFull() {
-	if(rear==queue.length-1)System.out.println("queue is full");
-	else {
-		System.out.println("queue is not full");
-	}
+	if((rear+1)%length==front)
+		System.out.println("queue is full");
+	else
+		System.out.println("not");
+	
 	
 }
+
 private static void isEmpty() {
-	if(rear==-1&&front==-1) {
-		System.out.println("queue is empty..");
-	}
-	else {
-		System.out.println("queue is  not empty");
-	}
+	if(front==-1)System.out.println("queue is empty");
+	else System.out.println("queue is not empty");
 	
 }
+
 private static void peak() {
-	if(rear==-1&&front==-1) {
-		System.out.println("queue is empty..");
-	}
-	else {
-		System.out.println(queue[front]+" is front element");
-	}
+	if(front==-1)System.out.println("queue is empty");
+	else
+		System.out.println(queue[front]+"  is front elemnt");
+	
 	
 }
+
 private static void deQueue() {
-	if(rear==-1&&front==-1) {
+	if(front==-1&& rear==-1)
+		{
 		System.out.println("queue is empty");
-		return;
-	}
-	if(front==rear) {
+	
+	return;
+		}
+	
+	else if(front==rear) {
 		front=rear=-1;
+		count--;
 		return;
 	}
-	front++;
-	System.out.println("data is delete..");
+	count--;
+	front=(front+1)%length;
+	System.out.println("from ele deleted");
 	
 }
+
 private static void enQueue(int data) {
-	if(rear==queue.length-1) {
-		System.out.println("stack is full......");
+	if((rear+1)%length==front) {
+		System.out.println("queue is full..");
 		return;
 	}
-	if(rear==-1&&front==-1) {
+	else if(front==-1 &&rear==-1) {
 		front=rear=0;
 		queue[rear]=data;
+		count++;
 		return;
 	}
-	rear++;
+	count++;
+	rear=(rear+1)%length;
 	queue[rear]=data;
 	
 }
+
 }
