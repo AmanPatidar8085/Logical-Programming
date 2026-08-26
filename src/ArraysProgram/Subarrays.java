@@ -8,7 +8,7 @@ public static void main(String[] args) {
 		for(int j=i;j<=arr.length-1;j++) {
 			int count=0;
 			for(int k=i;k<=j;k++) {
-//				System.out.print(arr[k]+" ");
+				System.out.print(arr[k]+" ");
 				count++;
 				
 			}

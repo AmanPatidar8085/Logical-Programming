@@ -2,11 +2,11 @@ package Recursion;
 
 public class SumOfNaturalNumber {
 public static void main(String[] args) {
-	int n=5;
-	sum(n);
+	int n=4;
+	System.out.println(sum(n));
 }
-static void sum(int n) {
-	if(n==0)return;
-	System.out.println();
+static int sum(int n) {
+	if(n==0)return 0;
+	return  n+sum(n-1);
 }
 }
