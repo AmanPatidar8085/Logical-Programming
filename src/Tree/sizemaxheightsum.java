@@ -11,7 +11,7 @@ public class sizemaxheightsum {
 		}
 		
 	}
-	//print all elemnt 
+	//print all element 
 	static void preorder(Node root) {
 		if(root==null)return;
 		System.out.println(root.val);
